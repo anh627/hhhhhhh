@@ -97,33 +97,71 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
+       .container {
+ max-width: 1400px; /* Giữ nguyên để giới hạn chiều rộng trên máy tính */
+ margin: 0 auto; /* Căn giữa trên máy tính */
+ padding: 20px; /* Padding mặc định */
+ position: relative;
+ z-index: 1;
+ box-sizing: border-box; /* Đảm bảo padding không làm tràn chiều rộng */
+}
 
-        .header {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            animation: slideIn 0.8s ease-out;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
+.header {
+ width: 100%; /* Đảm bảo header chiếm hết chiều rộng của container */
+ background: rgba(255, 255, 255, 0.15);
+ backdrop-filter: blur(20px);
+ border: 1px solid rgba(255, 255, 255, 0.2);
+ border-radius: 20px;
+ padding: 30px;
+ margin-bottom: 30px;
+ animation: slideIn 0.8s ease-out;
+ box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+ box-sizing: border-box; /* Đảm bảo padding không làm tràn chiều rộng */
+}
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+.header-content {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ flex-wrap: wrap;
+ gap: 20px;
+}
 
+/* Media query cho thiết bị di động */
+@media (max-width: 768px) {
+ .container {
+ padding: 0; /* Xóa padding hai bên để chiếm hết chiều rộng */
+ margin: 0; /* Xóa margin để header chạm cạnh màn hình */
+ width: 100%; /* Đảm bảo container chiếm hết chiều rộng */
+ }
+
+ .header {
+ border-radius: 0; /* Xóa bo góc để header trải rộng toàn màn hình */
+ padding: 15px; /* Giảm padding để tiết kiệm không gian trên di động */
+ margin-bottom: 15px; /* Giảm margin-bottom để tránh khoảng trống lớn */
+ width: 100%; /* Đảm bảo header chiếm hết chiều rộng */
+ }
+
+ .header-content {
+ flex-direction: column; /* Xếp dọc các phần tử trên di động */
+ align-items: stretch; /* Đảm bảo nội dung trải rộng hết chiều ngang */
+ gap: 15px; /* Giảm khoảng cách giữa các phần tử */
+ }
+
+ .status-panel {
+ display: flex;
+ justify-content: space-between;
+ width: 100%; /* Đảm bảo status-panel chiếm hết chiều rộng */
+ gap: 10px; /* Giảm khoảng cách giữa các phần tử trong status-panel */
+ }
+
+ .current-player,
+ .timer,
+ .status-panel > div:last-child {
+ flex: 1; /* Chia đều không gian cho các phần tử trong status-panel */
+ text-align: center; /* Căn giữa văn bản */
+ }
+}
         .logo-section {
             display: flex;
             align-items: center;
