@@ -107,6 +107,20 @@
     box-sizing: border-box;
     width: 100%;
 }
+        /* Tự động áp dụng bằng media query */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1400px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
 
 .header {
     background: rgba(255, 255, 255, 0.15);
