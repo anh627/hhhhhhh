@@ -581,36 +581,56 @@
             margin: 15px 0;
         }
 
-        .difficulty-btn {
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .difficulty-btn.easy {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* CSS chung cho cả hai bộ chọn */
+.difficulty-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient giống nền trang */
     color: white;
 }
 
-.difficulty-btn.medium {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.difficulty-btn.hard {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+.difficulty-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    border: 2px solid #ff6b6b; /* Viền đỏ khi hover */
 }
 
 .difficulty-btn.active {
     transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5); /* Bóng phù hợp với màu nền */
-    border: 2px solid #4ecdc4; /* Viền để nổi bật */
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+    border: 2px solid #4ecdc4; /* Viền xanh lam khi được chọn */
 }
-        /* Board size selector styling */
+
+/* Đảm bảo áp dụng cho cả hai bộ chọn */
+.board-size-selector .difficulty-btn,
+.difficulty-selector .difficulty-btn {
+    /* Các thuộc tính trên sẽ áp dụng cho cả hai */
+}
+
+     .difficulty-btn.easy {
+    background: linear-gradient(135deg, #28a745, #71e1a3); /* Xanh lá */
+}
+.difficulty-btn.medium {
+    background: linear-gradient(135deg, #ffc107, #ffeb3b); /* Vàng */
+}
+.difficulty-btn.hard {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b); /* Đỏ */
+}
+.difficulty-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    border: 2px solid #ff6b6b;
+}
+.difficulty-btn.active {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+    border: 2px solid #4ecdc4;
+}
         /* Board size selector styling */
 #boardSize {
     width: 100%;
@@ -631,41 +651,6 @@
     position: relative;
 }
 
-#boardSize:hover {
-    border-color: #ff6b6b;
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-    transform: translateY(-2px);
-}
-
-#boardSize:focus {
-    outline: none;
-    border-color: #ff6b6b;
-    box-shadow: 0 0 25px rgba(255, 107, 107, 0.6);
-}
-
-#boardSize option {
-    background: #667eea; /* Màu nền tương tự để đồng bộ */
-    color: #ffffff;
-    padding: 12px;
-    border: none;
-}
-
-#boardSize option:hover {
-    background: #4ecdc4;
-    color: #1a202c;
-}
-
-/* Thêm mũi tên tùy chỉnh để thay thế mũi tên mặc định của select */
-#boardSize::after {
-    content: '▼';
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ffffff;
-    font-size: 0.8rem;
-    pointer-events: none;
-}
 
         @media (max-width: 768px) {
             .main-content {
