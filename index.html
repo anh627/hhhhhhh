@@ -97,230 +97,160 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-/* ===== CSS MẶC ĐỊNH (DESKTOP) ===== */
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-    box-sizing: border-box;
-    width: 100%;
-}
+ .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
 
-.header {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 30px;
-    animation: slideIn 0.8s ease-out;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
+        .header {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            animation: slideIn 0.8s ease-out;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    width: 100%;
-}
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-.logo-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-.logo {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    animation: logoSparkle 3s ease-in-out infinite;
-    position: relative;
-}
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            animation: logoSparkle 3s ease-in-out infinite;
+            position: relative;
+        }
 
-.title {
-    color: white;
-    font-size: 3.5rem;
-    font-weight: 900;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 5px;
-}
+        .logo::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            border-radius: 22px;
+            z-index: -1;
+            animation: pulse 2s ease-in-out infinite;
+        }
 
-.subtitle {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.2rem;
-    font-weight: 500;
-}
+        .title {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
 
-.status-panel {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-}
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
 
-.current-player {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+        .status-panel {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
 
-.player-stone {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    position: relative;
-    animation: subtleGlow 4s ease-in-out infinite;
-}
+        .current-player {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-.black-stone {
-    background: radial-gradient(circle at 30% 30%, #4a5568, #1a202c);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-}
+        .player-stone {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: relative;
+            animation: subtleGlow 4s ease-in-out infinite;
+        }
 
-.white-stone {
-    background: radial-gradient(circle at 30% 30%, #ffffff, #e2e8f0);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    border: 3px solid #cbd5e0;
-}
+        .black-stone {
+            background: radial-gradient(circle at 30% 30%, #4a5568, #1a202c);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
 
-.timer {
-    text-align: center;
-    color: white;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px 20px;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-}
+        .white-stone {
+            background: radial-gradient(circle at 30% 30%, #ffffff, #e2e8f0);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 3px solid #cbd5e0;
+        }
 
-.timer.warning {
-    border-color: #ff6b6b;
-    animation: pulse 1s ease-in-out infinite;
-}
+        .timer {
+            text-align: center;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
 
-.main-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 30px;
-    align-items: start;
-}
+        .timer.warning {
+            border-color: #ff6b6b;
+            animation: pulse 1s ease-in-out infinite;
+        }
 
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
 
-.panel {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 25px;
-    animation: slideIn 0.8s ease-out;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-.panel h3 {
-    color: white;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .panel {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            animation: slideIn 0.8s ease-out;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
 
-
-/* ===== CSS RIÊNG CHO MOBILE (MÀN HÌNH < 768px) ===== */
-@media (max-width: 768px) {
-    .container {
-        max-width: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 10px; /* ít padding để sát cạnh */
-    }
-
-    .header {
-        background: transparent; /* bỏ nền trắng mờ */
-        backdrop-filter: none;
-        border: none;
-        border-radius: 0;
-        padding: 10px;
-        margin-bottom: 15px;
-        box-shadow: none;
-    }
-
-    .header-content {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .logo {
-        width: 60px;
-        height: 60px;
-        font-size: 30px;
-    }
-
-    .title {
-        font-size: 1.8rem;
-        text-align: center;
-    }
-
-    .subtitle {
-        font-size: 0.9rem;
-        text-align: center;
-    }
-
-    .status-panel {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        gap: 5px;
-        padding: 10px;
-        flex-wrap: wrap;
-    }
-
-    .current-player,
-    .timer,
-    .status-panel > div:last-child {
-        flex: 1;
-        text-align: center;
-        min-width: 80px;
-    }
-
-    .player-stone {
-        width: 40px;
-        height: 40px;
-    }
-
-    .main-content {
-        grid-template-columns: 1fr; /* xếp dọc thay vì 3 cột */
-        gap: 15px;
-    }
-
-    .sidebar {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
+        .panel h3 {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
         .game-board-container {
             display: flex;
             justify-content: center;
