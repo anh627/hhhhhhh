@@ -98,28 +98,27 @@
         }
 
  /* CSS cho container */
-.container {
-    max-width: 1400px; /* Giới hạn chiều rộng trên máy tính */
-    margin: 0 auto; /* Căn giữa trên máy tính */
-    padding: 20px; /* Padding mặc định */
+/*.container {
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 20px;
     position: relative;
     z-index: 1;
     box-sizing: border-box;
-    width: 100%; /* Đảm bảo container luôn chiếm hết chiều rộng */
-}
-
-/* CSS cho header */
-.header {
     width: 100%;
-    background: transparent;   /* bỏ lớp nền mờ trắng */
-    backdrop-filter: none;     /* bỏ hiệu ứng mờ */
-    border: none;              /* bỏ viền trắng */
-             /* bỏ bo góc (nếu muốn dính full màn hình) */
+}
+*/
+.header {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
     padding: 20px;
     margin-bottom: 30px;
     animation: slideIn 0.8s ease-out;
-              /* bỏ bóng đổ nếu không muốn */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
+
 
 /* CSS cho header-content */
 .header-content {
