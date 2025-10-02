@@ -110,16 +110,15 @@
 
 /* CSS cho header */
 .header {
-    width: 100%; /* Chiếm hết chiều rộng của container */
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 20px; /* Giảm từ 30px để tiết kiệm không gian */
+    width: 100%;
+    background: transparent;   /* bỏ lớp nền mờ trắng */
+    backdrop-filter: none;     /* bỏ hiệu ứng mờ */
+    border: none;              /* bỏ viền trắng */
+             /* bỏ bo góc (nếu muốn dính full màn hình) */
+    padding: 20px;
     margin-bottom: 30px;
     animation: slideIn 0.8s ease-out;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
+              /* bỏ bóng đổ nếu không muốn */
 }
 
 /* CSS cho header-content */
