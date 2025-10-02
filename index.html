@@ -97,7 +97,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-      /* CSS cho container */
+ /* CSS cho container */
 .container {
     max-width: 1400px; /* Giới hạn chiều rộng trên máy tính */
     margin: 0 auto; /* Căn giữa trên máy tính */
@@ -115,7 +115,7 @@
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px; /* Giảm từ 30px để tiết kiệm không gian */
     margin-bottom: 30px;
     animation: slideIn 0.8s ease-out;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -128,8 +128,47 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px; /* Giảm gap để gọn hơn */
     width: 100%; /* Đảm bảo header-content chiếm hết chiều rộng */
+}
+
+/* CSS cho logo-section */
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Giảm gap để logo và tiêu đề gần nhau hơn */
+}
+
+/* CSS cho logo */
+.logo {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    animation: logoSparkle 3s ease-in-out infinite;
+    position: relative;
+}
+
+/* CSS cho title và subtitle */
+.title {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 /* Media query cho thiết bị di động */
@@ -142,25 +181,50 @@
 
     .header {
         border-radius: 0; /* Xóa bo góc để trải rộng */
-        padding: 15px; /* Giảm padding trên di động */
+        padding: 10px; /* Giảm padding để tiêu đề sát cạnh hơn */
         margin-bottom: 15px; /* Giảm margin-bottom */
         width: 100%; /* Chiếm hết chiều rộng */
-        border: none; /* Xóa viền để header hòa với nền */
+        border: none; /* Xóa viền để hòa với nền */
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); /* Nền nhẹ hơn */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bóng nhẹ để nổi bật */
     }
 
     .header-content {
         flex-direction: column; /* Xếp dọc các phần tử */
         align-items: stretch; /* Trải rộng nội dung */
-        gap: 15px; /* Giảm khoảng cách */
-        padding: 0 10px; /* Thêm padding nhẹ để nội dung không sát cạnh */
+        gap: 10px; /* Giảm khoảng cách */
+        padding: 0 5px; /* Giảm padding để nội dung gần cạnh hơn */
+    }
+
+    .logo-section {
+        gap: 10px; /* Giảm gap để logo và tiêu đề sát nhau hơn */
+        justify-content: center; /* Căn giữa logo-section */
+    }
+
+    .logo {
+        width: 60px; /* Giảm kích thước logo */
+        height: 60px;
+        font-size: 30px; /* Giảm kích thước biểu tượng */
+        border-radius: 15px; /* Góc bo tròn nhỏ hơn */
+    }
+
+    .title {
+        font-size: 1.8rem; /* Giảm kích thước tiêu đề */
+        text-align: center; /* Căn giữa tiêu đề */
+    }
+
+    .subtitle {
+        font-size: 0.8rem; /* Giảm kích thước phụ đề */
+        text-align: center; /* Căn giữa phụ đề */
     }
 
     .status-panel {
         display: flex;
         justify-content: space-between;
         width: 100%; /* Chiếm hết chiều rộng */
-        gap: 10px; /* Giảm khoảng cách giữa các phần tử */
+        gap: 5px; /* Giảm khoảng cách giữa các phần tử */
         padding: 10px; /* Giảm padding bên trong */
+        flex-wrap: wrap; /* Cho phép wrap nếu màn hình quá nhỏ */
     }
 
     .current-player,
@@ -168,68 +232,14 @@
     .status-panel > div:last-child {
         flex: 1; /* Chia đều không gian */
         text-align: center;
+        min-width: 80px; /* Đảm bảo không quá nhỏ */
     }
 
-    /* Tối ưu font trên di động */
-    .title {
-        font-size: 2rem; /* Giảm kích thước tiêu đề */
-    }
-    .subtitle {
-        font-size: 0.9rem; /* Giảm kích thước phụ đề */
-    }
-    .status-panel {
-        font-size: 0.8rem; /* Giảm kích thước chữ */
-    }
-    .timer #timerDisplay,
-    .status-panel > div:last-child #moveCount {
-        font-size: 1.2rem; /* Giảm kích thước số đếm */
+    .player-stone {
+        width: 40px; /* Giảm kích thước quân cờ */
+        height: 40px;
     }
 }
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            animation: logoSparkle 3s ease-in-out infinite;
-            position: relative;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            border-radius: 22px;
-            z-index: -1;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .title {
-            color: white;
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
 
         .status-panel {
             display: flex;
