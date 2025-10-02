@@ -1063,6 +1063,11 @@
                 setTimeout(() => makeAiMove(), 1000);
             }
         }
+        function clearLastMove() {
+    document.querySelectorAll('.stone.last-move').forEach(stone => {
+        stone.classList.remove('last-move');
+    });
+}
 
         function createBoard() {
             const size = gameState.boardSize;
@@ -1212,85 +1217,88 @@
             return true;
         }
 
-        function makeMove(x, y) {
-            if (!isValidMove(x, y)) return false;
+       function makeMove(x, y) {
+    if (!isValidMove(x, y)) return false;
+    
+    const moveData = {
+        x, y,
+        player: gameState.currentPlayer,
+        captured: []
+    };
+    
+    // Place stone
+    gameState.board[y][x] = gameState.currentPlayer;
+    
+    // Handle captures
+    const opponent = getOpponent(gameState.currentPlayer);
+    const capturedGroups = getCapturedGroups(gameState.board, opponent);
+    
+    capturedGroups.forEach(group => {
+        group.forEach(([cx, cy]) => {
+            gameState.board[cy][cx] = EMPTY;
+            moveData.captured.push([cx, cy]);
             
-            const moveData = {
-                x, y,
-                player: gameState.currentPlayer,
-                captured: []
-            };
-            
-            // Place stone
-            gameState.board[y][x] = gameState.currentPlayer;
-            
-            // Handle captures
-            const opponent = getOpponent(gameState.currentPlayer);
-            const capturedGroups = getCapturedGroups(gameState.board, opponent);
-            
-            capturedGroups.forEach(group => {
-                group.forEach(([cx, cy]) => {
-                    gameState.board[cy][cx] = EMPTY;
-                    moveData.captured.push([cx, cy]);
-                    
-                    // Update capture count
-                    if (gameState.currentPlayer === BLACK) {
-                        gameState.captures.black++;
-                    } else {
-                        gameState.captures.white++;
-                    }
-                    
-                    // Animate capture
-                    animateCapture(cx, cy);
-                });
-            });
-            
-            gameState.moveHistory.push(moveData);
-            gameState.passCount = 0;
-            
-            // Update game phase
-            updateGamePhase();
-            
-            // Place stone with animation
-            placeStone(x, y, gameState.currentPlayer, true);
-            
-            // Switch players
-            gameState.currentPlayer = getOpponent(gameState.currentPlayer);
-            updateDisplay();
-            
-            // AI move (only in AI mode)
-            if (gameState.gameMode === 'ai' && gameState.currentPlayer === gameState.aiColor) {
-                setTimeout(() => makeAiMove(), 800);
+            // Update capture count
+            if (gameState.currentPlayer === BLACK) {
+                gameState.captures.black++;
+            } else {
+                gameState.captures.white++;
             }
             
-            return true;
-        }
-
+            // Animate capture
+            animateCapture(cx, cy);
+        });
+    });
+    
+    gameState.moveHistory.push(moveData);
+    gameState.passCount = 0;
+    
+    // Update game phase
+    updateGamePhase();
+    
+    // Clear previous last-move highlight
+    clearLastMove();
+    
+    // Place stone with animation and mark as last move
+    placeStone(x, y, gameState.currentPlayer, true);
+    
+    // Switch players
+    gameState.currentPlayer = getOpponent(gameState.currentPlayer);
+    updateDisplay();
+    
+    // AI move (only in AI mode)
+    if (gameState.gameMode === 'ai' && gameState.currentPlayer === gameState.aiColor) {
+        setTimeout(() => makeAiMove(), 800);
+    }
+    
+    return true;
+}
         function makeAiMove() {
-            gameState.isAiThinking = true;
-            document.getElementById('aiThinking').style.display = 'flex';
-            
-            // Simulate thinking time based on difficulty
-            const thinkingTime = {
-                easy: 300,
-                medium: 800,
-                hard: 1500
-            }[gameState.difficulty];
-            
-            setTimeout(() => {
-                const move = getBestAiMove();
-                
-                if (move) {
-                    makeMove(move.x, move.y);
-                } else {
-                    handlePass();
-                }
-                
-                gameState.isAiThinking = false;
-                document.getElementById('aiThinking').style.display = 'none';
-            }, thinkingTime);
+    gameState.isAiThinking = true;
+    document.getElementById('aiThinking').style.display = 'flex';
+    
+    // Simulate thinking time based on difficulty
+    const thinkingTime = {
+        easy: 300,
+        medium: 800,
+        hard: 1500
+    }[gameState.difficulty];
+    
+    setTimeout(() => {
+        const move = getBestAiMove();
+        
+        if (move) {
+            // Clear previous last-move highlight
+            clearLastMove();
+            makeMove(move.x, move.y);
+        } else {
+            handlePass();
         }
-
+        
+        gameState.isAiThinking = false;
+        document.getElementById('aiThinking').style.display = 'none';
+    }, thinkingTime);
+}
         function getBestAiMove() {
             const config = AI_CONFIG[gameState.difficulty];
             const moves = [];
@@ -1615,27 +1623,27 @@
             return player === BLACK ? WHITE : BLACK;
         }
 
-        function placeStone(x, y, color, isLastMove = false) {
-            const cellSize = Math.min(600 / (gameState.boardSize + 1), 45);
-            const padding = cellSize / 2;
-            
-            const stone = document.createElement('div');
-            stone.className = `stone ${color === BLACK ? 'black' : 'white'}${isLastMove ? ' last-move' : ''}`;
-            stone.style.position = 'absolute';
-            stone.style.left = `${padding + x * cellSize - cellSize * 0.4}px`; // Quân cờ to hơn
-            stone.style.top = `${padding + y * cellSize - cellSize * 0.4}px`;
-            stone.style.width = `${cellSize * 0.8}px`; // Tăng từ 0.7 lên 0.8
-            stone.style.height = `${cellSize * 0.8}px`;
-            stone.style.transform = 'scale(0)';
-            stone.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-            
-            document.getElementById('gameBoard').appendChild(stone);
-            
-            // Animate stone placement
-            setTimeout(() => {
-                stone.style.transform = 'scale(1)';
-            }, 10);
-        }
+       function placeStone(x, y, color, isLastMove = false) {
+    const cellSize = Math.min(600 / (gameState.boardSize + 1), 45);
+    const padding = cellSize / 2;
+    
+    const stone = document.createElement('div');
+    stone.className = `stone ${color === BLACK ? 'black' : 'white'}${isLastMove ? ' last-move' : ''}`;
+    stone.style.position = 'absolute';
+    stone.style.left = `${padding + x * cellSize - cellSize * 0.4}px`;
+    stone.style.top = `${padding + y * cellSize - cellSize * 0.4}px`;
+    stone.style.width = `${cellSize * 0.8}px`;
+    stone.style.height = `${cellSize * 0.8}px`;
+    stone.style.transform = 'scale(0)';
+    stone.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    
+    document.getElementById('gameBoard').appendChild(stone);
+    
+    // Animate stone placement
+    setTimeout(() => {
+        stone.style.transform = 'scale(1)';
+    }, 10);
+}
 
         function animateCapture(x, y) {
             const stones = document.querySelectorAll('.stone');
@@ -1828,21 +1836,21 @@
         }
 
         function rebuildBoardDisplay() {
-            // Remove all stones
-            document.querySelectorAll('.stone').forEach(stone => stone.remove());
-            
-            // Redraw all stones
-            for (let y = 0; y < gameState.boardSize; y++) {
-                for (let x = 0; x < gameState.boardSize; x++) {
-                    if (gameState.board[y][x] !== EMPTY) {
-                        const isLastMove = gameState.moveHistory.length > 0 && 
-                            gameState.moveHistory[gameState.moveHistory.length - 1].x === x &&
-                            gameState.moveHistory[gameState.moveHistory.length - 1].y === y;
-                        placeStone(x, y, gameState.board[y][x], isLastMove);
-                    }
-                }
+    // Remove all stones
+    document.querySelectorAll('.stone').forEach(stone => stone.remove());
+    
+    // Redraw all stones
+    for (let y = 0; y < gameState.boardSize; y++) {
+        for (let x = 0; x < gameState.boardSize; x++) {
+            if (gameState.board[y][x] !== EMPTY) {
+                const isLastMove = gameState.moveHistory.length > 0 && 
+                    gameState.moveHistory[gameState.moveHistory.length - 1].x === x &&
+                    gameState.moveHistory[gameState.moveHistory.length - 1].y === y;
+                placeStone(x, y, gameState.board[y][x], isLastMove);
             }
         }
+    }
+}
 
         function showScore() {
             const score = calculateFinalScore();
