@@ -611,46 +611,61 @@
         }
 
         /* Board size selector styling */
-        #boardSize {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 12px;
-            border: 2px solid #4ecdc4;
-            background: linear-gradient(45deg, #1a202c, #2d3748);
-            color: #ffffff;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);
-        }
+        /* Board size selector styling */
+#boardSize {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 2px solid #4ecdc4;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Khớp với màu nền của body */
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);
+    -webkit-appearance: none; /* Xóa giao diện mặc định của trình duyệt */
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+}
 
-        #boardSize:hover {
-            border-color: #ff6b6b;
-            background: linear-gradient(45deg, #2d3748, #4a5568);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-            transform: translateY(-2px);
-        }
+#boardSize:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    transform: translateY(-2px);
+}
 
-        #boardSize:focus {
-            outline: none;
-            border-color: #ff6b6b;
-            background: linear-gradient(45deg, #2d3748, #4a5568);
-            box-shadow: 0 0 25px rgba(255, 107, 107, 0.6);
-        }
+#boardSize:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 25px rgba(255, 107, 107, 0.6);
+}
 
-        #boardSize option {
-            background: #1a202c;
-            color: #ffffff;
-            padding: 12px;
-            border: none;
-        }
+#boardSize option {
+    background: #667eea; /* Màu nền tương tự để đồng bộ */
+    color: #ffffff;
+    padding: 12px;
+    border: none;
+}
 
-        #boardSize option:hover {
-            background: #4ecdc4;
-            color: #1a202c;
-        }
+#boardSize option:hover {
+    background: #4ecdc4;
+    color: #1a202c;
+}
+
+/* Thêm mũi tên tùy chỉnh để thay thế mũi tên mặc định của select */
+#boardSize::after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-size: 0.8rem;
+    pointer-events: none;
+}
 
         @media (max-width: 768px) {
             .main-content {
