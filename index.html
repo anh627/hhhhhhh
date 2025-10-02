@@ -97,70 +97,93 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-       .container {
- max-width: 1400px; /* Giữ nguyên để giới hạn chiều rộng trên máy tính */
- margin: 0 auto; /* Căn giữa trên máy tính */
- padding: 20px; /* Padding mặc định */
- position: relative;
- z-index: 1;
- box-sizing: border-box; /* Đảm bảo padding không làm tràn chiều rộng */
+      /* CSS cho container */
+.container {
+    max-width: 1400px; /* Giới hạn chiều rộng trên máy tính */
+    margin: 0 auto; /* Căn giữa trên máy tính */
+    padding: 20px; /* Padding mặc định */
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 100%; /* Đảm bảo container luôn chiếm hết chiều rộng */
 }
 
+/* CSS cho header */
 .header {
- width: 100%; /* Đảm bảo header chiếm hết chiều rộng của container */
- background: rgba(255, 255, 255, 0.15);
- backdrop-filter: blur(20px);
- border: 1px solid rgba(255, 255, 255, 0.2);
- border-radius: 20px;
- padding: 30px;
- margin-bottom: 30px;
- animation: slideIn 0.8s ease-out;
- box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
- box-sizing: border-box; /* Đảm bảo padding không làm tràn chiều rộng */
+    width: 100%; /* Chiếm hết chiều rộng của container */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    animation: slideIn 0.8s ease-out;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
+/* CSS cho header-content */
 .header-content {
- display: flex;
- justify-content: space-between;
- align-items: center;
- flex-wrap: wrap;
- gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%; /* Đảm bảo header-content chiếm hết chiều rộng */
 }
 
 /* Media query cho thiết bị di động */
 @media (max-width: 768px) {
- .container {
- padding: 0; /* Xóa padding hai bên để chiếm hết chiều rộng */
- margin: 0; /* Xóa margin để header chạm cạnh màn hình */
- width: 100%; /* Đảm bảo container chiếm hết chiều rộng */
- }
+    .container {
+        padding: 0; /* Xóa padding để chạm cạnh màn hình */
+        margin: 0; /* Xóa margin để chạm cạnh màn hình */
+        width: 100%; /* Chiếm hết chiều rộng */
+    }
 
- .header {
- border-radius: 0; /* Xóa bo góc để header trải rộng toàn màn hình */
- padding: 15px; /* Giảm padding để tiết kiệm không gian trên di động */
- margin-bottom: 15px; /* Giảm margin-bottom để tránh khoảng trống lớn */
- width: 100%; /* Đảm bảo header chiếm hết chiều rộng */
- }
+    .header {
+        border-radius: 0; /* Xóa bo góc để trải rộng */
+        padding: 15px; /* Giảm padding trên di động */
+        margin-bottom: 15px; /* Giảm margin-bottom */
+        width: 100%; /* Chiếm hết chiều rộng */
+        border: none; /* Xóa viền để header hòa với nền */
+    }
 
- .header-content {
- flex-direction: column; /* Xếp dọc các phần tử trên di động */
- align-items: stretch; /* Đảm bảo nội dung trải rộng hết chiều ngang */
- gap: 15px; /* Giảm khoảng cách giữa các phần tử */
- }
+    .header-content {
+        flex-direction: column; /* Xếp dọc các phần tử */
+        align-items: stretch; /* Trải rộng nội dung */
+        gap: 15px; /* Giảm khoảng cách */
+        padding: 0 10px; /* Thêm padding nhẹ để nội dung không sát cạnh */
+    }
 
- .status-panel {
- display: flex;
- justify-content: space-between;
- width: 100%; /* Đảm bảo status-panel chiếm hết chiều rộng */
- gap: 10px; /* Giảm khoảng cách giữa các phần tử trong status-panel */
- }
+    .status-panel {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; /* Chiếm hết chiều rộng */
+        gap: 10px; /* Giảm khoảng cách giữa các phần tử */
+        padding: 10px; /* Giảm padding bên trong */
+    }
 
- .current-player,
- .timer,
- .status-panel > div:last-child {
- flex: 1; /* Chia đều không gian cho các phần tử trong status-panel */
- text-align: center; /* Căn giữa văn bản */
- }
+    .current-player,
+    .timer,
+    .status-panel > div:last-child {
+        flex: 1; /* Chia đều không gian */
+        text-align: center;
+    }
+
+    /* Tối ưu font trên di động */
+    .title {
+        font-size: 2rem; /* Giảm kích thước tiêu đề */
+    }
+    .subtitle {
+        font-size: 0.9rem; /* Giảm kích thước phụ đề */
+    }
+    .status-panel {
+        font-size: 0.8rem; /* Giảm kích thước chữ */
+    }
+    .timer #timerDisplay,
+    .status-panel > div:last-child #moveCount {
+        font-size: 1.2rem; /* Giảm kích thước số đếm */
+    }
 }
         .logo-section {
             display: flex;
