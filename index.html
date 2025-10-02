@@ -591,25 +591,25 @@
         }
 
         .difficulty-btn.easy {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
-            color: white;
-        }
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
 
-        .difficulty-btn.medium {
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            color: white;
-        }
+.difficulty-btn.medium {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
 
-        .difficulty-btn.hard {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-        }
+.difficulty-btn.hard {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
 
-        .difficulty-btn.active {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
+.difficulty-btn.active {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5); /* Bóng phù hợp với màu nền */
+    border: 2px solid #4ecdc4; /* Viền để nổi bật */
+}
         /* Board size selector styling */
         /* Board size selector styling */
 #boardSize {
@@ -694,7 +694,12 @@
             padding: 15px;
             margin-top: 20px;
         }
-
+.board-size-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+}
         .keyboard-hints h4 {
             color: white;
             margin-bottom: 10px;
@@ -766,13 +771,13 @@
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <label style="color: white; margin-bottom: 10px; display: block;">Board Size</label>
-                        <select id="boardSize">
-                            <option value="9">9×9</option>
-                            <option value="13">13×13</option>
-                            <option value="19">19×19</option>
-                        </select>
-                    </div>
+    <label style="color: white; margin-bottom: 10px; display: block;">Board Size</label>
+    <div class="board-size-selector">
+        <button class="difficulty-btn easy active" data-size="9">🟢 9×9</button>
+        <button class="difficulty-btn medium" data-size="13">🟡 13×13</button>
+        <button class="difficulty-btn hard" data-size="19">🔴 19×19</button>
+    </div>
+</div>
                     
                     <div id="aiSettings" style="margin-bottom: 20px;">
                         <label style="color: white; margin-bottom: 10px; display: block;">AI Difficulty</label>
@@ -948,10 +953,14 @@
             startTimer();
             
             // Event listeners
-            document.getElementById('boardSize').addEventListener('change', (e) => {
-                gameState.boardSize = parseInt(e.target.value);
-                initGame();
-            });
+          document.querySelectorAll('.board-size-selector .difficulty-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.board-size-selector .difficulty-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        gameState.boardSize = parseInt(e.target.dataset.size);
+        initGame();
+    });
+});
             
             document.querySelectorAll('.difficulty-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
