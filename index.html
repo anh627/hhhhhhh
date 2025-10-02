@@ -174,22 +174,21 @@
 /* Media query cho thiết bị di động */
 @media (max-width: 768px) {
     .container {
-        padding: 0; /* Xóa padding để chạm cạnh màn hình */
-        margin: 0; /* Xóa margin để chạm cạnh màn hình */
-        width: 100%; /* Chiếm hết chiều rộng */
+        padding: 0;
+        margin: 0;
+        width: 100%;
     }
 
-    .header {
-        border-radius: 0; /* Xóa bo góc để trải rộng */
-        padding: 10px; /* Giảm padding để tiêu đề sát cạnh hơn */
-        margin-bottom: 15px; /* Giảm margin-bottom */
-        width: 100%; /* Chiếm hết chiều rộng */
-        border: none; /* Xóa viền để hòa với nền */
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); /* Nền nhẹ hơn */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bóng nhẹ để nổi bật */
+    .header,
+    .panel,
+    .game-board-container {
+        border-radius: 0;
+        margin: 0;
+        width: 100%;
     }
+}
 
-    .header-content {
+        .header-content {
         flex-direction: column; /* Xếp dọc các phần tử */
         align-items: stretch; /* Trải rộng nội dung */
         gap: 10px; /* Giảm khoảng cách */
