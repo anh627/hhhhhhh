@@ -108,16 +108,12 @@
     width: 100%;
 }
         /* Tự động áp dụng bằng media query */
-@media (min-width: 1024px) {
-    .container {
-        max-width: 1400px;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 1023px) {
+@media (max-width: 768px) {
     .container {
         max-width: 100%;
+        width: 100%;
+        margin-left: 10px;   /* vẫn cách bên trái */
+        margin-right: 0;     /* dính hẳn bên phải */
         padding: 10px;
     }
 }
