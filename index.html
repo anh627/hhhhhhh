@@ -97,18 +97,16 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
- /* CSS cho container */
+/* ===== CSS MẶC ĐỊNH (DESKTOP) ===== */
 .container {
-    max-width: 1400px; 
-    margin: 0 auto; 
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 20px;
     position: relative;
     z-index: 1;
     box-sizing: border-box;
     width: 100%;
 }
-        /* Tự động áp dụng bằng media query */
-
 
 .header {
     background: rgba(255, 255, 255, 0.15);
@@ -121,25 +119,21 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-
-/* CSS cho header-content */
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px; /* Giảm gap để gọn hơn */
-    width: 100%; /* Đảm bảo header-content chiếm hết chiều rộng */
+    gap: 15px;
+    width: 100%;
 }
 
-/* CSS cho logo-section */
 .logo-section {
     display: flex;
     align-items: center;
-    gap: 15px; /* Giảm gap để logo và tiêu đề gần nhau hơn */
+    gap: 15px;
 }
 
-/* CSS cho logo */
 .logo {
     width: 80px;
     height: 80px;
@@ -153,7 +147,6 @@
     position: relative;
 }
 
-/* CSS cho title và subtitle */
 .title {
     color: white;
     font-size: 3.5rem;
@@ -170,10 +163,101 @@
     font-size: 1.2rem;
     font-weight: 500;
 }
-        /* ===== CSS cho mobile (màn hình nhỏ hơn 768px) ===== */
+
+.status-panel {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.current-player {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.player-stone {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    animation: subtleGlow 4s ease-in-out infinite;
+}
+
+.black-stone {
+    background: radial-gradient(circle at 30% 30%, #4a5568, #1a202c);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.white-stone {
+    background: radial-gradient(circle at 30% 30%, #ffffff, #e2e8f0);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid #cbd5e0;
+}
+
+.timer {
+    text-align: center;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.timer.warning {
+    border-color: #ff6b6b;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    animation: slideIn 0.8s ease-out;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.panel h3 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ===== CSS RIÊNG CHO MOBILE (MÀN HÌNH < 768px) ===== */
 @media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 10px; /* ít padding để sát cạnh */
+    }
+
     .header {
-        background: transparent;  /* Bỏ nền trắng mờ */
+        background: transparent; /* bỏ nền trắng mờ */
         backdrop-filter: none;
         border: none;
         border-radius: 0;
@@ -225,115 +309,17 @@
         width: 40px;
         height: 40px;
     }
-}
 
-
-
-
-    .status-panel {
-        display: flex;
-        justify-content: space-between;
-        width: 100%; /* Chiếm hết chiều rộng */
-        gap: 5px; /* Giảm khoảng cách giữa các phần tử */
-        padding: 10px; /* Giảm padding bên trong */
-        flex-wrap: wrap; /* Cho phép wrap nếu màn hình quá nhỏ */
+    .main-content {
+        grid-template-columns: 1fr; /* xếp dọc thay vì 3 cột */
+        gap: 15px;
     }
 
-    .current-player,
-    .timer,
-    .status-panel > div:last-child {
-        flex: 1; /* Chia đều không gian */
-        text-align: center;
-        min-width: 80px; /* Đảm bảo không quá nhỏ */
-    }
-
-    .player-stone {
-        width: 40px; /* Giảm kích thước quân cờ */
-        height: 40px;
+    .sidebar {
+        flex-direction: column;
+        gap: 10px;
     }
 }
-
-        .status-panel {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .current-player {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .player-stone {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            position: relative;
-            animation: subtleGlow 4s ease-in-out infinite;
-        }
-
-        .black-stone {
-            background: radial-gradient(circle at 30% 30%, #4a5568, #1a202c);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-        }
-
-        .white-stone {
-            background: radial-gradient(circle at 30% 30%, #ffffff, #e2e8f0);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border: 3px solid #cbd5e0;
-        }
-
-        .timer {
-            text-align: center;
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px 20px;
-            border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .timer.warning {
-            border-color: #ff6b6b;
-            animation: pulse 1s ease-in-out infinite;
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 30px;
-            align-items: start;
-        }
-
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .panel {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 25px;
-            animation: slideIn 0.8s ease-out;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .panel h3 {
-            color: white;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
 
         .game-board-container {
             display: flex;
