@@ -25,7 +25,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.1;
+            opacity: 0.15;
         }
 
         .particle {
@@ -34,7 +34,47 @@
             height: 4px;
             background: #fff;
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            animation: sparkle 4s ease-in-out infinite;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: radial-gradient(circle, #fff, #4ecdc4);
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(0); 
+                opacity: 0; 
+                box-shadow: 0 0 10px #fff;
+            }
+            50% { 
+                transform: translateY(-150px) rotate(180deg) scale(1); 
+                opacity: 1; 
+                box-shadow: 0 0 20px #4ecdc4, 0 0 30px #fff;
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0; 
+                transform: scale(0) rotate(0deg);
+                box-shadow: 0 0 5px #fff;
+            }
+            25% { 
+                opacity: 1; 
+                transform: scale(1) rotate(90deg);
+                box-shadow: 0 0 15px #4ecdc4, 0 0 25px #fff;
+            }
+            75% { 
+                opacity: 0.8; 
+                transform: scale(0.8) rotate(270deg);
+                box-shadow: 0 0 10px #ff6b6b;
+            }
         }
 
         @keyframes float {
@@ -99,7 +139,7 @@
             align-items: center;
             justify-content: center;
             font-size: 40px;
-            animation: glow 3s ease-in-out infinite;
+            animation: logoSparkle 3s ease-in-out infinite;
             position: relative;
         }
 
@@ -151,7 +191,7 @@
             height: 50px;
             border-radius: 50%;
             position: relative;
-            animation: pulse 2s ease-in-out infinite;
+            animation: subtleGlow 4s ease-in-out infinite;
         }
 
         .black-stone {
@@ -277,9 +317,21 @@
 
         .stone.last-move {
             box-shadow: 
-                0 0 30px #ff6b6b,
+                0 0 20px #ff6b6b,
                 0 8px 25px rgba(0, 0, 0, 0.6);
-            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        .stone.last-move::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid #ff6b6b;
+            border-radius: 50%;
+            animation: subtleGlow 4s ease-in-out infinite;
         }
 
         .stone.capturing {
@@ -377,6 +429,52 @@
             100% { transform: rotate(360deg); }
         }
 
+        @keyframes subtleGlow {
+            0%, 100% { 
+                opacity: 0.4; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes logoSparkle {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(102, 126, 234, 0.5),
+                    0 0 40px rgba(78, 205, 196, 0.3),
+                    inset 0 0 20px rgba(255, 255, 255, 0.1);
+                transform: rotate(0deg) scale(1);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            25% {
+                box-shadow: 
+                    0 0 30px rgba(255, 107, 107, 0.6),
+                    0 0 50px rgba(78, 205, 196, 0.5),
+                    inset 0 0 30px rgba(255, 255, 255, 0.2);
+                transform: rotate(90deg) scale(1.05);
+                text-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 40px rgba(78, 205, 196, 0.8),
+                    0 0 60px rgba(255, 107, 107, 0.4),
+                    inset 0 0 40px rgba(255, 255, 255, 0.3);
+                transform: rotate(180deg) scale(1.1);
+                text-shadow: 0 0 20px rgba(78, 205, 196, 1);
+            }
+            75% {
+                box-shadow: 
+                    0 0 30px rgba(69, 183, 209, 0.6),
+                    0 0 50px rgba(150, 206, 180, 0.5),
+                    inset 0 0 30px rgba(255, 255, 255, 0.2);
+                transform: rotate(270deg) scale(1.05);
+                text-shadow: 0 0 15px rgba(69, 183, 209, 0.8);
+            }
+        }
+
         .modal {
             position: fixed;
             top: 0;
@@ -403,6 +501,55 @@
             overflow-y: auto;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
             animation: slideIn 0.4s ease-out;
+        }
+
+        .close-button {
+            background: linear-gradient(45deg, #ff6b6b, #e74c3c);
+            color: #ffffff;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-button:hover {
+            transform: scale(1.15);
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.8);
+            border-color: #4ecdc4;
+        }
+
+        /* Security Features */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        input, textarea, select {
+            -webkit-user-select: auto;
+            -moz-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
+        }
+
+        .no-copy {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            pointer-events: none;
         }
 
         .stats-grid {
@@ -463,6 +610,48 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
+        /* Board size selector styling */
+        #boardSize {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 2px solid #4ecdc4;
+            background: linear-gradient(45deg, #1a202c, #2d3748);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);
+        }
+
+        #boardSize:hover {
+            border-color: #ff6b6b;
+            background: linear-gradient(45deg, #2d3748, #4a5568);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            transform: translateY(-2px);
+        }
+
+        #boardSize:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            background: linear-gradient(45deg, #2d3748, #4a5568);
+            box-shadow: 0 0 25px rgba(255, 107, 107, 0.6);
+        }
+
+        #boardSize option {
+            background: #1a202c;
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+        }
+
+        #boardSize option:hover {
+            background: #4ecdc4;
+            color: #1a202c;
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -520,7 +709,7 @@
         <header class="header">
             <div class="header-content">
                 <div class="logo-section">
-                    <div class="logo">🏁</div>
+                    <div class="logo">☯</div>
                     <div>
                         <h1 class="title">Go Master Pro</h1>
                         <p class="subtitle">Advanced AI & Beautiful Design</p>
@@ -563,7 +752,7 @@
                     
                     <div style="margin-bottom: 20px;">
                         <label style="color: white; margin-bottom: 10px; display: block;">Board Size</label>
-                        <select id="boardSize" style="width: 100%; padding: 10px; border-radius: 8px; border: none; background: rgba(255,255,255,0.1); color: white;">
+                        <select id="boardSize">
                             <option value="9">9×9</option>
                             <option value="13">13×13</option>
                             <option value="19">19×19</option>
@@ -885,31 +1074,15 @@
                     intersection.dataset.x = x;
                     intersection.dataset.y = y;
                     
-                    intersection.addEventListener('click', () => {
-                        if (gameState.gameMode === 'twoPlayers') {
-                            // Two player mode - anyone can move
-                            makeMove(x, y);
-                        } else if (!gameState.isAiThinking && gameState.currentPlayer === gameState.humanColor) {
-                            // AI mode - only human can move
-                            makeMove(x, y);
-                        }
-                    });
-                    
-                    intersection.addEventListener('mouseenter', () => {
-                        let canMove = false;
-                        if (gameState.gameMode === 'twoPlayers') {
-                            canMove = isValidMove(x, y);
-                        } else {
-                            canMove = !gameState.isAiThinking && gameState.currentPlayer === gameState.humanColor && isValidMove(x, y);
-                        }
+                    intersection.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         
-                        if (canMove) {
-                            showPreviewStone(x, y);
-                        }
-                    });
-                    
-                    intersection.addEventListener('mouseleave', () => {
-                        hidePreviewStone(x, y);
+                        // Check if this intersection can accept a move
+                        if (!canMakeMove(x, y)) return;
+                        
+                        // Make the move
+                        makeMove(x, y);
                     });
                     
                     boardElement.appendChild(intersection);
@@ -929,6 +1102,20 @@
                 points.push([3, 9], [15, 9], [9, 3], [9, 15]);
             }
             return points;
+        }
+
+        // Function to check if a move can be made at this position
+        function canMakeMove(x, y) {
+            // Check if it's currently this player's turn and game is not paused
+            if (gameState.isAiThinking) return false;
+            
+            // In AI mode, only human can click to move
+            if (gameState.gameMode === 'ai' && gameState.currentPlayer !== gameState.humanColor) {
+                return false;
+            }
+            
+            // Check if the move is valid
+            return isValidMove(x, y);
         }
 
         function isValidMove(x, y) {
@@ -1714,14 +1901,25 @@
             const container = document.getElementById('backgroundAnimation');
             container.innerHTML = '';
             
-            // Create floating particles
-            for (let i = 0; i < 50; i++) {
+            // Create floating particles with sparkle effect
+            for (let i = 0; i < 30; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (3 + Math.random() * 3) + 's';
+                particle.style.animationDelay = Math.random() * 4 + 's';
+                particle.style.animationDuration = (2 + Math.random() * 2) + 's';
                 container.appendChild(particle);
+            }
+            
+            // Create additional sparkling elements
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                sparkle.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+                container.appendChild(sparkle);
             }
         }
 
@@ -1731,7 +1929,7 @@
                     title: "Welcome to Go!",
                     content: `
                         <div style="text-align: center; margin: 20px 0;">
-                            <div style="font-size: 4rem; margin-bottom: 15px;">🏁</div>
+                            <div style="font-size: 4rem; margin-bottom: 15px;">☯</div>
                             <h3 style="color: #333; margin-bottom: 15px;">Go Master Pro Tutorial</h3>
                             <p style="color: #666; line-height: 1.6;">Go is an ancient board game of strategy and territory control. Let's learn the basics!</p>
                         </div>
@@ -1911,7 +2109,7 @@
                             </div>
                         </div>
                         
-                        <button onclick="closeTutorial()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; color: #999; cursor: pointer;">×</button>
+                        <button class="close-button" onclick="closeTutorial()" style="position: absolute; top: 15px; right: 15px;">×</button>
                     </div>
                 `;
                 
@@ -1951,6 +2149,120 @@
 
         // Initialize game when page loads
         document.addEventListener('DOMContentLoaded', initGame);
+
+        // Security Features
+        (function() {
+            'use strict';
+            
+            // Disable right click
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Disable F12, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+S
+            document.addEventListener('keydown', function(e) {
+                // F12
+                if (e.keyCode === 123) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                // Ctrl+U (View Source)
+                if (e.ctrlKey && e.keyCode === 85) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                // Ctrl+Shift+I (Dev Tools)
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                // Ctrl+Shift+J (Console)
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                // Ctrl+S (Save)
+                if (e.ctrlKey && e.keyCode === 83) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                // Ctrl+A (Select All)
+                if (e.ctrlKey && e.keyCode === 65) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                // Ctrl+C (Copy)
+                if (e.ctrlKey && e.keyCode === 67) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                // Ctrl+V (Paste)  
+                if (e.ctrlKey && e.keyCode === 86) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // Clear console periodically
+            setInterval(function() {
+                console.clear();
+            }, 3000);
+            
+            // Disable text selection on drag
+            document.onselectstart = function() {
+                return false;
+            };
+            
+            document.onmousedown = function() {
+                return false;
+            };
+            
+            // Disable print
+            window.print = function() {
+                return false;
+            };
+            
+            // Anti-debug
+            setInterval(function() {
+                var start = Date.now();
+                debugger;
+                if (Date.now() - start > 100) {
+                    window.location.reload();
+                }
+            }, 5000);
+            
+            // Detect developer tools
+            var devtools = {
+                open: false,
+                orientation: null
+            };
+            
+            setInterval(function() {
+                if (window.outerHeight - window.innerHeight > 200 || 
+                    window.outerWidth - window.innerWidth > 200) {
+                    if (!devtools.open) {
+                        devtools.open = true;
+                        console.clear();
+                        document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#1a202c;color:#fff;font-family:monospace;font-size:2rem;">🔒 Access Denied</div>';
+                    }
+                }
+            }, 500);
+            
+            // Obfuscate source code
+            Object.defineProperty(window, 'console', {
+                value: {},
+                writable: false
+            });
+            
+        })();
     </script>
 </body>
 </html>
